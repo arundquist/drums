@@ -20,3 +20,7 @@ Route::get('test', function()
 {
 	return "you made it";
 });
+
+Route::get('sound/mathematica', 'SoundsController@mathematica');
+
+Route::resource('sound', 'SoundsController');
