@@ -69,13 +69,16 @@ class SoundsController extends \BaseController {
 	public function store()
 	{
 		$s = Input::get('score');
-        $freqs = Input::get('freqs');
-        $amps = Input::get('amps');
-        $score=new Sound;
-        $score->frequencies=$freqs;
-        $score->amplitudes=$amps;
-        $score->score=$s;
-        $score->save();
+		if ($s>=0 && $s<=5)
+		{
+			$freqs = Input::get('freqs');
+			$amps = Input::get('amps');
+			$score=new Sound;
+			$score->frequencies=$freqs;
+			$score->amplitudes=$amps;
+			$score->score=$s;
+			$score->save();
+		};
         return Redirect::action('SoundsController@create');
 	}
 
