@@ -94,6 +94,7 @@ class SoundsController extends \BaseController {
 	public function show($id)
 	{
 		$sound=Sound::findOrFail($id);
+		dd($sound);
 		$freqs=$sound->frequencies;
 		$freqs=substr($freqs, 1, -1);
 		$fres=explode($freqs, ",");
