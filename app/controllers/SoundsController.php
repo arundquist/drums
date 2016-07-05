@@ -10,7 +10,9 @@ class SoundsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return "hi there";
+		$allsounds=Sound::paginate(20);
+		return View::make('sounds/index',
+			['allsounds'=>$allsounds]);
 	}
 
 	/**
