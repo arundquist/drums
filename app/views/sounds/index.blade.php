@@ -8,7 +8,7 @@
     <body>
         <table border ='1'>
       @foreach($allsounds AS $sound)
-      <tr><td>{{$sound->freqeuncies}}</td>
+      <tr><td>{{$sound->frequencies}}</td>
             <td>{{$sound->amplitudes}}</td>
             <td>{{$sound->score}}</td>
        </tr>
