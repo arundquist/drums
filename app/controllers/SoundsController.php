@@ -93,7 +93,34 @@ class SoundsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$sound=Sound::findOrFail($id);
+		$freqs=$sound->frequencies;
+		$freqs=substr($freqs, 1, -1);
+		$fres=explode($freqs, ",");
+		$amps=$sound->amplitudes;
+		$amps=substr($amps, 1, -1);
+		$amps=explode($amps, ",");
+		$key=1;
+		$text='context = new AudioContext;';
+        foreach ($freqs as $key => $value) {
+            # code...
+            $text.="oscillator$key = context.createOscillator();
+            gainNode$key = context.createGain();
+            oscillator$key.frequency.value = $value;
+            //oscillator$key.connect(context.destination);
+            
+            currentTime = context.currentTime;
+            oscillator$key.connect(gainNode$key); // Connect sound source 2 to gain node 2
+            gainNode$key.connect(context.destination); // Connect gain node 2 to output
+            gainNode$key.gain.value = $amps[$key];
+            oscillator$key.start(currentTime);
+            oscillator$key.stop(currentTime + 1);
+
+";
+		};
+		return View::make('sound/show',
+			['text'=>$text,
+			'sound'=>$sound]);
 	}
 
 	/**
