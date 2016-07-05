@@ -10,7 +10,7 @@
       @foreach($allsounds AS $sound)
       <tr><td>{{$sound->frequencies}}</td>
             <td>{{$sound->amplitudes}}</td>
-            <td>{{$sound->score}}</td>
+            <td>{{link_to_action('SoundsController@show', $sound->score,[$sound->id])}}</td>
        </tr>
       
       @endforeach

@@ -94,13 +94,12 @@ class SoundsController extends \BaseController {
 	public function show($id)
 	{
 		$sound=Sound::findOrFail($id);
-		dd($sound);
 		$freqs=$sound->frequencies;
 		$freqs=substr($freqs, 1, -1);
-		$fres=explode($freqs, ",");
+		$freqs=explode(', ',$freqs);
 		$amps=$sound->amplitudes;
 		$amps=substr($amps, 1, -1);
-		$amps=explode($amps, ",");
+		$amps=explode(', ',$amps);
 		$key=1;
 		$text='context = new AudioContext;';
         foreach ($freqs as $key => $value) {
@@ -119,7 +118,7 @@ class SoundsController extends \BaseController {
 
 ";
 		};
-		return View::make('sound/show',
+		return View::make('sounds/show',
 			['text'=>$text,
 			'sound'=>$sound]);
 	}
