@@ -175,6 +175,13 @@ class SoundsController extends \BaseController {
         $full="{";
         $full.=implode($textlist,", ");
         $full.="}";
+		$tabletext=[];
+		foreach ($all AS $value) {
+			$text="$value->id\t$value->frequencies\t$value->amplitudes\t$value->score\t$value->created_at";
+			$tabletext[]=$text;
+		}
+		$full=implode($tabletext,'
+');
         return $full;
     }
 
